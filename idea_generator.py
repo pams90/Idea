@@ -1,23 +1,26 @@
 import streamlit as st
 import random
 
-# Sample idea categories and keywords
+# Expanded idea categories and keywords with more innovative and unique concepts
 categories = {
-    "Tech": ["AI-powered", "Blockchain-based", "IoT-enabled"],
-    "Health & Wellness": ["Mindfulness app", "Personalized fitness", "Sleep tracker"],
-    "Education": ["Gamified learning", "AI tutor", "Skill-sharing platform"],
-    "Finance": ["Automated budgeting", "Crypto investment tool", "AI stock predictor"],
-    "Entertainment": ["Interactive storytelling", "VR experiences", "AI-generated content"]
+    "Tech": ["AI-powered emotion recognition", "Decentralized identity verification", "Quantum computing simulation"],
+    "Health & Wellness": ["AI-driven mental health assistant", "Personalized microbiome analysis", "Virtual reality therapy"],
+    "Education": ["AI-generated personalized curriculum", "Blockchain-based credential verification", "Neuroscience-backed learning methods"],
+    "Finance": ["Predictive AI for smart investing", "Automated tax optimization", "Crowdsourced economic forecasting"],
+    "Entertainment": ["AI-driven script writing assistant", "Interactive holographic concerts", "Personalized AR storytelling"],
+    "Sustainability": ["AI-powered waste sorting", "Blockchain for ethical supply chains", "Personalized carbon footprint tracker"],
+    "Smart Cities": ["AI-powered traffic optimization", "Blockchain-based energy trading", "Autonomous waste collection"],
+    "Space & Exploration": ["AI for asteroid mining", "Crowdsourced exoplanet discovery", "VR-based space training simulator"]
 }
 
-# Function to generate a random idea
+# Function to generate a truly unique and innovative app idea
 def generate_idea():
     category = random.choice(list(categories.keys()))
     keyword = random.choice(categories[category])
     return f"{keyword} {category} Application"
 
 # Streamlit UI
-st.title("🚀 Idea Generator for Innovative Applications")
+st.title("🚀 Idea Generator for Innovative & Non-Existing Applications")
 
 # Button to generate a new idea
 if st.button("Generate Idea"):
