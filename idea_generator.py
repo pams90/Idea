@@ -14,17 +14,19 @@ categories = {
 }
 
 # Function to generate a truly unique and innovative app idea
-def generate_idea():
-    category = random.choice(list(categories.keys()))
+def generate_idea(category):
     keyword = random.choice(categories[category])
     return f"{keyword} {category} Application"
 
 # Streamlit UI
 st.title("🚀 Idea Generator for Innovative & Non-Existing Applications")
 
+# User selects a category
+selected_category = st.selectbox("Choose a category:", list(categories.keys()))
+
 # Button to generate a new idea
 if st.button("Generate Idea"):
-    idea = generate_idea()
+    idea = generate_idea(selected_category)
     st.session_state["current_idea"] = idea
     st.success(f"💡 {idea}")
 
