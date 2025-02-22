@@ -1,25 +1,25 @@
 import streamlit as st
 import random
 
-# Expanded idea categories and keywords with more innovative and unique concepts
+# Categories and unique, high-value, non-existing app ideas that can be programmed
 categories = {
-    "Tech": ["AI-powered emotion recognition", "Decentralized identity verification", "Quantum computing simulation"],
-    "Health & Wellness": ["AI-driven mental health assistant", "Personalized microbiome analysis", "Virtual reality therapy"],
-    "Education": ["AI-generated personalized curriculum", "Blockchain-based credential verification", "Neuroscience-backed learning methods"],
-    "Finance": ["Predictive AI for smart investing", "Automated tax optimization", "Crowdsourced economic forecasting"],
-    "Entertainment": ["AI-driven script writing assistant", "Interactive holographic concerts", "Personalized AR storytelling"],
-    "Sustainability": ["AI-powered waste sorting", "Blockchain for ethical supply chains", "Personalized carbon footprint tracker"],
-    "Smart Cities": ["AI-powered traffic optimization", "Blockchain-based energy trading", "Autonomous waste collection"],
-    "Space & Exploration": ["AI for asteroid mining", "Crowdsourced exoplanet discovery", "VR-based space training simulator"]
+    "Tech": ["AI-driven code optimization tool", "Smart bug detection with real-time fixes", "Automated UI/UX improvement AI"],
+    "Health & Wellness": ["AI-powered burnout detection & recovery planner", "Personalized mental health journaling assistant", "Smart hydration and nutrition tracker"],
+    "Education": ["AI-driven interactive learning modules", "Real-time AI tutor for coding challenges", "Personalized memory enhancement training"],
+    "Finance": ["AI-driven budget optimization assistant", "Predictive tax-saving insights tool", "Automated investment strategy generator"],
+    "Entertainment": ["AI-generated dynamic storytelling app", "Personalized movie/series script creator", "Interactive AR-based novel experience"],
+    "Sustainability": ["Smart home energy waste tracker", "AI-powered personal carbon footprint optimizer", "Automated ethical shopping assistant"],
+    "Smart Cities": ["AI-based public transport efficiency tracker", "Real-time smart parking space optimizer", "Community-driven local improvement app"],
+    "Business & Productivity": ["Automated meeting note summarizer with action items", "AI-based client sentiment analysis tool", "Real-time workflow bottleneck identifier"]
 }
 
-# Function to generate a truly unique and innovative app idea
+# Function to generate a unique and innovative app idea that satisfies high-value needs
 def generate_idea(category):
     keyword = random.choice(categories[category])
-    return f"{keyword} {category} Application"
+    return f"{keyword} ({category} Application)"
 
 # Streamlit UI
-st.title("🚀 Idea Generator for Innovative & Non-Existing Applications")
+st.title("🚀 High-Value Innovative App Idea Generator")
 
 # User selects a category
 selected_category = st.selectbox("Choose a category:", list(categories.keys()))
