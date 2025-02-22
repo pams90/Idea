@@ -6,77 +6,64 @@ categories = {
     "Health & Wellness": [
         "AI-driven burnout detection & recovery planner",
         "Personalized mental health journaling assistant",
-        "Real-time stress & anxiety tracker with AI suggestions",
-        "AI-powered sleep optimizer that adapts based on biometrics",
-        "Smart hydration and nutrition tracker with wearable integration"
+        "Real-time stress & anxiety tracker",
+        "AI-powered sleep optimizer",
+        "Smart hydration and nutrition tracker"
     ],
     "Productivity & Organization": [
         "AI-powered time management assistant",
-        "Smart task prioritization tool based on urgency & importance",
+        "Smart task prioritization tool",
         "Automated workflow bottleneck detector",
-        "Personalized productivity coach with habit tracking",
-        "AI-driven focus enhancement app with real-time distractions analysis"
+        "Personalized productivity coach",
+        "AI-driven focus enhancement app"
     ],
     "Finance & Wealth": [
-        "AI-driven budget optimizer and smart spending insights",
-        "Personalized wealth growth assistant with AI investment suggestions",
+        "AI-driven budget optimizer",
+        "Personalized wealth growth assistant",
         "Automated tax-saving strategy generator",
         "Real-time credit score improvement coach",
-        "Financial planning AI that adapts to user life changes"
+        "Financial planning AI"
     ],
     "Education & Learning": [
         "AI-powered interactive tutoring assistant",
-        "Gamified learning platform with AI-generated challenges",
+        "Gamified learning platform",
         "Personalized knowledge retention trainer",
-        "Real-time skill gap analyzer with curated learning paths",
-        "AI-driven neuroscience-backed study optimizer"
+        "Real-time skill gap analyzer",
+        "AI-driven study optimizer"
     ],
     "Entertainment & Creativity": [
         "AI-generated dynamic storytelling platform",
-        "Personalized AR/VR immersive experience generator",
-        "Interactive AI-driven content creator assistant",
-        "Music composition AI based on user mood and creativity",
-        "Adaptive interactive gaming platform with AI-generated levels"
+        "Personalized AR/VR experience generator",
+        "Interactive AI-driven content creator",
+        "Music composition AI",
+        "Adaptive interactive gaming platform"
     ],
     "Sustainability & Smart Living": [
         "AI-powered personal carbon footprint tracker",
         "Smart home energy efficiency optimizer",
         "Blockchain-based ethical shopping assistant",
-        "Automated waste tracking and recycling optimizer",
+        "Automated waste tracking tool",
         "Smart AI assistant for sustainable lifestyle planning"
     ],
     "Smart Cities & Mobility": [
-        "AI-powered real-time public transport efficiency tracker",
-        "Autonomous smart parking optimization system",
-        "Community-driven urban improvement feedback platform",
-        "AI-enhanced pedestrian safety navigation assistant",
-        "Smart city waste and pollution monitoring AI"
+        "AI-powered public transport efficiency tracker",
+        "Autonomous smart parking system",
+        "Community-driven urban improvement platform",
+        "AI-enhanced pedestrian safety assistant",
+        "Smart city waste monitoring AI"
     ],
     "Security & Privacy": [
-        "Real-time personal safety assistant with smart alerts",
-        "AI-driven cyber threat detection and privacy protection tool",
-        "Blockchain-based decentralized identity management system",
+        "Real-time personal safety assistant",
+        "AI-driven cyber threat detection tool",
+        "Blockchain-based identity management system",
         "Universal AI-powered fraud detection assistant",
-        "Smart home security optimizer with AI behavior tracking"
+        "Smart home security optimizer"
     ]
 }
 
-problem_statements = [
-    "solves an unmet market need by introducing",
-    "optimizes user experience through",
-    "disrupts the industry by leveraging",
-    "creates a new revenue model using",
-    "enhances productivity via",
-    "revolutionizes daily habits through",
-    "automates complex decision-making by integrating"
-]
-
-# Function to generate a unique and innovative app idea
+# Function to generate a unique app idea
 def generate_idea(category):
-    feature = random.choice(categories[category])
-    problem = random.choice(problem_statements)
-    unique_twist = random.choice(categories[category])
-    return f"{feature} app that {problem} {unique_twist}."
+    return random.choice(categories[category])
 
 # Streamlit UI
 st.title("🚀 High-Value, Innovative & Non-Existing App Idea Generator")
