@@ -3,9 +3,8 @@ import random
 import requests
 import time
 
-# Bing Search API Key (Replace with your own if needed)
-BING_API_KEY = "your_bing_api_key"
-BING_SEARCH_URL = "https://api.bing.microsoft.com/v7.0/search"
+# Free DuckDuckGo Search API (Does not require API key)
+DUCKDUCKGO_SEARCH_URL = "https://api.duckduckgo.com/"
 
 # Categories and dynamic components based on provided app ideas
 categories = {
@@ -26,12 +25,11 @@ categories = {
 }
 
 def check_uniqueness(idea):
-    """Searches the internet to check if the app idea already exists."""
-    headers = {"Ocp-Apim-Subscription-Key": BING_API_KEY}
-    params = {"q": idea, "count": 5}
-    response = requests.get(BING_SEARCH_URL, headers=headers, params=params)
+    """Searches the internet to check if the app idea already exists using DuckDuckGo."""
+    params = {"q": idea, "format": "json", "no_redirect": "1", "no_html": "1"}
+    response = requests.get(DUCKDUCKGO_SEARCH_URL, params=params)
     if response.status_code == 200:
-        results = response.json().get("webPages", {}).get("value", [])
+        results = response.json().get("RelatedTopics", [])
         return len(results) == 0  # If no search results, idea is likely unique
     return True  # Assume unique if search fails
 
