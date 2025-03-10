@@ -1,5 +1,11 @@
 import streamlit as st
 import random
+import requests
+import time
+
+# Bing Search API Key (Replace with your own if needed)
+BING_API_KEY = "your_bing_api_key"
+BING_SEARCH_URL = "https://api.bing.microsoft.com/v7.0/search"
 
 # Categories and dynamic components based on provided app ideas
 categories = {
@@ -16,65 +22,39 @@ categories = {
         ("Automated workflow bottleneck detector", "A tool that identifies inefficiencies in workflows and suggests optimizations."),
         ("Personalized productivity coach", "A habit-building app that tailors strategies to improve productivity."),
         ("AI-driven focus enhancement app", "An app that minimizes distractions and optimizes deep work sessions.")
-    ],
-    "Finance & Wealth": [
-        ("AI-driven budget optimizer", "A tool that analyzes spending and suggests the best saving strategies."),
-        ("Personalized wealth growth assistant", "An AI advisor that customizes financial plans to maximize investments."),
-        ("Automated tax-saving strategy generator", "A tax optimization app that finds legal ways to reduce taxable income."),
-        ("Real-time credit score improvement coach", "An AI tool that helps users understand and boost their credit scores."),
-        ("Financial planning AI", "A smart financial advisor that dynamically adjusts plans based on life changes.")
-    ],
-    "Education & Learning": [
-        ("AI-powered interactive tutoring assistant", "A virtual tutor that adapts to students’ learning styles and progress."),
-        ("Gamified learning platform", "An educational platform that makes learning fun through challenges and rewards."),
-        ("Personalized knowledge retention trainer", "An AI tool that improves memory retention through adaptive learning."),
-        ("Real-time skill gap analyzer", "An app that identifies weaknesses and suggests targeted learning resources."),
-        ("AI-driven study optimizer", "A tool that schedules study sessions for maximum efficiency and recall.")
-    ],
-    "Entertainment & Creativity": [
-        ("AI-generated dynamic storytelling platform", "An interactive storytelling app that creates AI-driven plots in real-time."),
-        ("Personalized AR/VR experience generator", "A tool that builds customized AR/VR environments based on user input."),
-        ("Interactive AI-driven content creator", "An AI assistant that helps users create videos, images, and text content."),
-        ("Music composition AI", "An app that generates unique music compositions based on user preferences."),
-        ("Adaptive interactive gaming platform", "A game engine that changes levels dynamically based on player behavior.")
-    ],
-    "Sustainability & Smart Living": [
-        ("AI-powered personal carbon footprint tracker", "An app that monitors daily habits and suggests ways to reduce carbon impact."),
-        ("Smart home energy efficiency optimizer", "A tool that optimizes home energy usage for cost and environmental savings."),
-        ("Blockchain-based ethical shopping assistant", "An app that verifies product origins to ensure ethical and sustainable choices."),
-        ("Automated waste tracking tool", "An AI-powered app that tracks waste production and suggests reduction strategies."),
-        ("Smart AI assistant for sustainable lifestyle planning", "A planner that helps users live more sustainably through AI-driven advice.")
-    ],
-    "Smart Cities & Mobility": [
-        ("AI-powered public transport efficiency tracker", "An app that monitors and suggests improvements for public transport."),
-        ("Autonomous smart parking system", "A tool that finds and reserves parking spots in real-time using AI."),
-        ("Community-driven urban improvement platform", "A city development app that allows users to propose and vote on changes."),
-        ("AI-enhanced pedestrian safety assistant", "A real-time pedestrian navigation system that enhances safety measures."),
-        ("Smart city waste monitoring AI", "A system that optimizes waste collection through AI-powered predictions.")
-    ],
-    "Security & Privacy": [
-        ("Real-time personal safety assistant", "An app that detects danger and alerts emergency contacts instantly."),
-        ("AI-driven cyber threat detection tool", "A cybersecurity assistant that detects and prevents online threats."),
-        ("Blockchain-based identity management system", "A secure identity management system using blockchain for authentication."),
-        ("Universal AI-powered fraud detection assistant", "An AI-driven tool that identifies fraudulent activity across multiple platforms."),
-        ("Smart home security optimizer", "An app that adapts home security settings based on user habits and threats.")
     ]
 }
 
-# Function to generate a unique app idea with description
-def generate_idea(category):
-    idea, description = random.choice(categories[category])
-    return idea, description
+def check_uniqueness(idea):
+    """Searches the internet to check if the app idea already exists."""
+    headers = {"Ocp-Apim-Subscription-Key": BING_API_KEY}
+    params = {"q": idea, "count": 5}
+    response = requests.get(BING_SEARCH_URL, headers=headers, params=params)
+    if response.status_code == 200:
+        results = response.json().get("webPages", {}).get("value", [])
+        return len(results) == 0  # If no search results, idea is likely unique
+    return True  # Assume unique if search fails
+
+def generate_unique_idea(category):
+    """Generates an app idea and verifies its uniqueness on the web."""
+    attempts = 0
+    while attempts < 5:
+        idea, description = random.choice(categories[category])
+        if check_uniqueness(idea):
+            return idea, description
+        attempts += 1
+        time.sleep(1)  # Prevent excessive API calls
+    return "No unique ideas found, try again!", "Try another category or reattempt search."
 
 # Streamlit UI
-st.title("🚀 High-Value, Innovative & Non-Existing App Idea Generator")
+st.title("🚀 AI-Generated Non-Existing App Ideas")
 
 # User selects a category
 selected_category = st.selectbox("Choose a category:", list(categories.keys()))
 
 # Button to generate a new idea
 if st.button("Generate Idea"):
-    idea, description = generate_idea(selected_category)
+    idea, description = generate_unique_idea(selected_category)
     st.session_state["current_idea"] = (idea, description)
     st.success(f"💡 {idea}")
     st.write(f"📌 Description: {description}")
